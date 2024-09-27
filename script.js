@@ -1,25 +1,10 @@
-function loadStudentMarks() {
-            const tableBody = document.getElementById('marksTableBody');
-            tableBody.innerHTML = ''; // Clear the table
+const rollNumber = localStorage.getItem('rollNumber');
+        const fullName = localStorage.getItem('fullName');
+        
+        // Get marks from localStorage
+        const chemistryMarks = localStorage.getItem('chemistryMarks');
+        const physicsMarks = localStorage.getItem('physicsMarks');
 
-            for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
-
-                if (key.startsWith('student_')) {
-                    const student = JSON.parse(localStorage.getItem(key));
-
-                    // Create a row with the student's info
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td>${student.rollNumber}</td>
-                        <td>${student.fullName}</td>
-                        <td>${student.physicsMarks}</td>
-                        <td>${student.chemistryMarks}</td>
-                    `;
-                    tableBody.appendChild(row);
-                }
-            }
-        }
-
-        // Load student marks when the page loads
-        window.onload = loadStudentMarks;
+        // Display student details and results
+        document.getElementById('studentDetails').innerHTML = `Roll Number: ${rollNumber} <br> Full Name: ${fullName}`;
+        document.getElementById('resultDetails').innerHTML = `Chemistry Marks: ${chemistryMarks} <br> Physics Marks: ${physicsMarks}`;
